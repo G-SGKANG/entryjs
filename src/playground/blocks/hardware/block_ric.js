@@ -8,15 +8,15 @@
  *
  *********************************************************/
 
-class mechatro {
+class ric {
     constructor() {
         this.id = '1F.1';
-        this.url = 'http://cafe.naver.com/easybread';
-        this.name = 'mechatro';
-        this.imageName = 'mechatro_nano.png';
+        this.url = 'http://www.arduino.cc/';
+        this.name = 'ric';
+        this.imageName = 'arduinoExt.png';
         this.title = {
-            ko: '메카트로',
-            en: 'mechatro',
+            ko: 'RIC',
+            en: 'RIC',
         };
 
         this.monitorTemplate = {
@@ -103,17 +103,6 @@ class mechatro {
             mode: 'both',
         };
 
-        /*this.thresHold = {
-            '14': 512,
-            '15': 512,
-            '16': 512,
-            '17': 512,
-            '18': 512,
-            '19': 512,
-            '20': 512,
-            '21': 512,
-        };*/
-
         this.portMode = {
 
             SET_GROUP_COMMAND: 0x80,
@@ -172,23 +161,23 @@ class mechatro {
 
         // 순서에 따라 화면에 보임
         this.blockMenuBlocks = [
-            'mechatro_event_rising_falling',  // Add 2020-07-04
-            //'mechatro_set_threshold',       // Add 2018-02-12   Del 2022-05-22
-            'mechatro_get_digital',
-            'mechatro_get_analog_judgement',  // Add 2022-05-22
-            'mechatro_get_sensor_value',
-            'mechatro_get_dc_motor_current',
-            'mechatro_get_ultrasonic_value',
-            'mechatro_get_temperature',
-            'mechatro_set_get_sensor_value_map',
-            'mechatro_set_digital',
-            'mechatro_set_pwm',
-            'mechatro_set_tone',
-            'mechatro_set_tone_time',
-            'mechatro_set_dc_motor',
-            'mechatro_set_servo_position',
-            'mechatro_set_servo_speed',
-            'mechatro_set_blue_pw',
+            'ric_event_rising_falling',  // Add 2020-07-04
+            'ric_get_digital',
+            'ric_get_analog_judgement',  // Add 2022-05-22
+            'ric_get_sensor_value',
+            //'ric_get_dc_motor_current',
+            //'ric_get_ultrasonic_value',
+            //'ric_get_temperature',
+            'ric_set_get_sensor_value_map',
+            'ric_set_digital',
+            'ric_set_pwm',
+            //'ric_set_tone',
+            //'ric_set_tone_time',
+            //'ric_set_dc_motor',
+            'ric_set_servo_position',
+            'ric_set_servo_positions',
+            'ric_set_servo_speed',
+            //'ric_set_blue_pw',
         ];
     }
     setLanguage() {
@@ -196,45 +185,47 @@ class mechatro {
             ko: {
                 // ko.js에 작성하던 내용
                 template: {
-                    mechatro_get_dc_motor_current: "%1모터 전류값[mA]",
-                    mechatro_get_digital: "%1 디지털 값",
-                    mechatro_get_analog_judgement: "%1 %2 %3",
-                    mechatro_get_sensor_value: "%1 센서값",
-                    mechatro_set_get_sensor_value_map: '%1 의 범위를 %2 ~ %3 에서 %4 ~ %5 로 바꾼값',
-                    mechatro_get_ultrasonic_value: "초음파센서 Trig %1 Echo %2 의 거리값 [cm]",
-                    mechatro_get_temperature: "%1 온도 센서 값 (TMP36)",
-                    mechatro_set_blue_pw: "블루투스 비밀번호 : %1%2%3%4로 정하기%5",
-                    mechatro_set_dc_motor: "%1모터 속도 %2로 정하기%3",
-                    mechatro_set_digital: "%1번 %2 %3",
-                    mechatro_set_pwm: "%1PWM을 %2%로 정하기 %3",
-                    mechatro_set_servo_position: "%1서보모터 위치 :%2도로 옮기기 %3",
-                    mechatro_set_servo_speed: "%1서보모터 속도 : 1초당 %2도로 정하기 %3",
-                    //mechatro_set_threshold: "%1 센서 감도 : %2로 정하기%3",
-                    mechatro_set_tone: "%1버저 %2 %3 음으로 연주 %4",
-                    mechatro_set_tone_time: "%1버저 %2 %3 음으로 %4 초 연주 %5",
-                    mechatro_event_rising_falling: "%1 %2 이 %3이 될 때",
+                    ric_event_rising_falling: "%1 %2 이 %3이 될 때",
+                    //ric_get_dc_motor_current: "%1모터 전류값[mA]",
+                    ric_get_digital: "%1 디지털 값",
+                    ric_get_analog_judgement: "%1 %2 %3",
+                    ric_get_sensor_value: "%1 센서값",
+                    ric_set_get_sensor_value_map: '%1 의 범위를 %2 ~ %3 에서 %4 ~ %5 로 바꾼값',
+                    //ric_get_ultrasonic_value: "초음파센서 Trig %1 Echo %2 의 거리값 [cm]",
+                    //ric_get_temperature: "%1 온도 센서 값 (TMP36)",
+                    //ric_set_blue_pw: "블루투스 비밀번호 : %1%2%3%4로 정하기%5",
+                    //ric_set_dc_motor: "%1모터 속도 %2로 정하기%3",
+                    ric_set_digital: "%1번 %2 %3",
+                    ric_set_pwm: "%1PWM을 %2%로 정하기 %3",
+                    ric_set_servo_position: "%1서보모터 위치 :%2도로 옮기기 %3",
+                    ric_set_servo_positions: "서보각도 %1 %2 %3 %4 %5 %6 %7 %8 시간: %9",
+                    ric_set_servo_speed: "%1서보모터 속도 : 1초당 %2도로 정하기 %3",
+                    //ric_set_threshold: "%1 센서 감도 : %2로 정하기%3",
+                    //ric_set_tone: "%1버저 %2 %3 음으로 연주 %4",
+                    //ric_set_tone_time: "%1버저 %2 %3 음으로 %4 초 연주 %5",
                 },
             },
             en: {
                 // en.js에 작성하던 내용
                 template: {
-                    mechatro_get_dc_motor_current: 'Get 1%motor current',
-                    mechatro_get_digital: '%1',
-                    mechatro_get_analog_judgement: "%1 %2 %3",
-                    mechatro_get_sensor_value: 'Analog %1 Sensor value',
-                    mechatro_set_get_sensor_value_map: 'Map Value %1 %2 ~ %3 to %4 ~ %5',
-                    mechatro_get_ultrasonic_value: "Read ultrasonic sensor trig pin %1 echo pin %2",
-                    mechatro_get_temperature: "temperature %1 Sensor (TMP36)",
-                    mechatro_set_blue_pw: "Change PW of Bluetooth to %1%2%3%4 %5",
-                    mechatro_set_dc_motor: "Set %1 motor speed to %2 %3",
-                    mechatro_set_digital: "Digital %1 Pin %2 %3",
-                    mechatro_set_pwm: "Digital %1 Pin %2 %3",
-                    mechatro_set_servo_position: "Set servo pin %1 angle as %2 %3",
-                    mechatro_set_servo_speed: "Set servo pin %1 speed %2 degree per second %3",
-                    //mechatro_set_threshold: "Set %1 threshold : %2%3",
-                    mechatro_set_tone: "Play tone pin %1 on note %2 octave %3 %4",
-                    mechatro_set_tone_time: "Play tone pin %1 on note %2 octave %3 beat %4 %5",
-                    mechatro_event_rising_falling: "%1 When %2 is turned %3",
+                    ric_event_rising_falling: "%1 When %2 is turned %3",
+                    //ric_get_dc_motor_current: 'Get 1%motor current',
+                    ric_get_digital: '%1',
+                    ric_get_analog_judgement: "%1 %2 %3",
+                    ric_get_sensor_value: 'Analog %1 Sensor value',
+                    ric_set_get_sensor_value_map: 'Map Value %1 %2 ~ %3 to %4 ~ %5',
+                    //ric_get_ultrasonic_value: "Read ultrasonic sensor trig pin %1 echo pin %2",
+                    //ric_get_temperature: "temperature %1 Sensor (TMP36)",
+                    //ric_set_blue_pw: "Change PW of Bluetooth to %1%2%3%4 %5",
+                    //ric_set_dc_motor: "Set %1 motor speed to %2 %3",
+                    ric_set_digital: "Digital %1 Pin %2 %3",
+                    ric_set_pwm: "Digital %1 Pin %2 %3",
+                    ric_set_servo_position: "Set servo pin %1 angle as %2 %3",
+                    ric_set_servo_positions: "%Servo 1 %2 %3 %4 %5 %6 %7 %8 Time: %9",
+                    ric_set_servo_speed: "Set servo pin %1 speed %2 degree per second %3",
+                    //ric_set_threshold: "Set %1 threshold : %2%3",
+                    //ric_set_tone: "Play tone pin %1 on note %2 octave %3 %4",
+                    //ric_set_tone_time: "Play tone pin %1 on note %2 octave %3 beat %4 %5",
                 },
             },
         };
@@ -344,7 +335,7 @@ class mechatro {
 
     getBlocks() {
         return {
-            mechatro_event_rising_falling: {  // Digital Low Hit Only, 
+            ric_event_rising_falling: {  // Digital Low Hit Only, 
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 fontColor: '#fff',
@@ -386,26 +377,26 @@ class mechatro {
                 events: {},
                 def: {
                     params: [null, '2', '1'],
-                    type: 'mechatro_event_rising_falling',
+                    type: 'ric_event_rising_falling',
                 },
                 paramsKeyMap: {
                     PORT: 1,
                     EDGE: 2,
                 },
-                class: 'MechatroStart',
-                isNotFor: ['mechatro'],
+                class: 'ricStart',
+                isNotFor: ['ric'],
                 event: 'event_digital_input',
                 func(sprite, script) {
                     const portNo = script.getNumberField('PORT', script);
                     const toggle = script.getNumberField('EDGE', script);
                     if (toggle) {
-                        if (Entry.mechatro.eventState.RISING[portNo]) {
-                            Entry.mechatro.eventState.RISING[portNo] = false;
+                        if (Entry.ric.eventState.RISING[portNo]) {
+                            Entry.ric.eventState.RISING[portNo] = false;
                             return script.callReturn();
                         }
                     } else {
-                        if (Entry.mechatro.eventState.FALLING[portNo]) {
-                            Entry.mechatro.eventState.FALLING[portNo] = false;
+                        if (Entry.ric.eventState.FALLING[portNo]) {
+                            Entry.ric.eventState.FALLING[portNo] = false;
                             return script.callReturn();
                         }
                     }
@@ -413,7 +404,7 @@ class mechatro {
                 },
                 syntax: { js: [], py: [] },
             },
-            mechatro_get_digital: {
+            ric_get_digital: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 fontColor: '#fff',
@@ -442,23 +433,23 @@ class mechatro {
                 events: {},
                 def: {
                     params: [null],
-                    type: 'mechatro_get_digital',
+                    type: 'ric_get_digital',
                 },
                 paramsKeyMap: {
                     PORT: 0,
                 },
-                class: 'MechatroJudgement',
-                isNotFor: ['mechatro'],
+                class: 'ricJudgement',
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     var portNo = script.getNumberField('PORT', script);
                     var mode;
                     var value;
                     if (portNo > 14) {
-                        mode = Entry.mechatro.portMode.SET_DIGITAL_IN_H;
+                        mode = Entry.ric.portMode.SET_DIGITAL_IN_H;
                     } else {
-                        mode = Entry.mechatro.portMode.SET_DIGITAL_IN_L;
+                        mode = Entry.ric.portMode.SET_DIGITAL_IN_L;
                     }
-                    Entry.mechatro.transferMode(portNo, mode);
+                    Entry.ric.transferMode(portNo, mode);
 
                     if (Entry.hw.portData[portNo] !== undefined) {
                         value = Entry.hw.portData[portNo];
@@ -470,7 +461,7 @@ class mechatro {
                 syntax: { js: [], py: [] },
             },
 
-            mechatro_get_analog_judgement: {
+            ric_get_analog_judgement: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 fontColor: '#fff',
@@ -520,15 +511,15 @@ class mechatro {
                             type: 'text',
                             params: ['512'],
                         }],
-                    type: 'mechatro_get_analog_judgement',
+                    type: 'ric_get_analog_judgement',
                 },
                 paramsKeyMap: {
                     PORT: 0,
                     OPERATOR: 1,
                     RIGHTHAND: 2,
                 },
-                class: 'MechatroJudgement',
-                isNotFor: ['mechatro'],
+                class: 'ricJudgement',
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     const operator = script.getField('OPERATOR', script);
                     let [portNo, rightValue] = script.getValues(
@@ -538,8 +529,8 @@ class mechatro {
                     let mode;
                     let leftValue;
 
-                    mode = Entry.mechatro.portMode.SET_ANALOG_IN;
-                    Entry.mechatro.transferMode(portNo, mode);
+                    mode = Entry.ric.portMode.SET_ANALOG_IN;
+                    Entry.ric.transferMode(portNo, mode);
 
                     if (typeof rightValue === 'string' && rightValue.length) {
                         const rightNumber = Number(rightValue);
@@ -571,69 +562,7 @@ class mechatro {
                 syntax: { js: [], py: [] },
             },
 
-            /*mechatro_get_digital: {
-                color: EntryStatic.colorSet.block.default.HARDWARE,
-                outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
-                fontColor: '#fff',
-                skeleton: 'basic_boolean_field',
-                params: [
-                    {
-                        type: 'Dropdown',
-                        options: [
-                            ['D2', '2'],
-                            ['D4', '4'],
-                            ['D5', '5'],
-                            ['D6', '6'],
-                            ['D7', '7'],
-                            ['D10', '10'],
-                            ['A2', '16'],
-                            ['A3', '17'],
-                            ['A4', '18'],
-                            ['A5', '19'],
-                        ],
-                        value: '2',
-                        fontSize: 11,
-                        bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
-                        arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                    },
-                ],
-                events: {},
-                def: {
-                    params: [null],
-                    type: 'mechatro_get_digital',
-                },
-                paramsKeyMap: {
-                    PORT: 0,
-                },
-                class: 'MechatroGet',
-                isNotFor: ['mechatro'],
-                func(sprite, script) {
-                    var portNo = script.getNumberField('PORT', script);
-                    var mode;
-                    var value;
-
-                    if (portNo > 14) {
-                        mode = Entry.mechatro.portMode.SET_ANALOG_IN;
-                    } else {
-                        mode = Entry.mechatro.portMode.SET_DIGITAL_IN_L;
-                    }
-
-                    Entry.mechatro.transferMode(portNo, mode);
-
-                    if (Entry.hw.portData[portNo] !== undefined) {
-                        value = Entry.hw.portData[portNo];
-                        if (portNo > 14) {
-                            value = value > Entry.mechatro.thresHold[portNo] ? 1 : 0;
-                        }
-                        return value;
-                    } else {
-                        return 0;
-                    }
-                },
-                syntax: { js: [], py: [] },
-            },
-            */
-            mechatro_get_sensor_value: {
+            ric_get_sensor_value: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 fontColor: '#fff',
@@ -659,19 +588,19 @@ class mechatro {
                 events: {},
                 def: {
                     params: [null],
-                    type: 'mechatro_get_sensor_value',
+                    type: 'ric_get_sensor_value',
                 },
                 paramsKeyMap: {
                     PORT: 0,
                 },
-                class: 'MechatroGet',
-                isNotFor: ['mechatro'],
+                class: 'ricGet',
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     const portNo = script.getNumberField('PORT', script);
                     //const mPortNo = `m${portNo}`;
-                    const mode = Entry.mechatro.portMode.SET_ANALOG_IN;
+                    const mode = Entry.ric.portMode.SET_ANALOG_IN;
 
-                    Entry.mechatro.transferMode(portNo, mode);
+                    Entry.ric.transferMode(portNo, mode);
 
                     if (Entry.hw.portData[portNo] !== undefined) {
                         return Entry.hw.portData[portNo];
@@ -679,71 +608,9 @@ class mechatro {
                         return 0;
                     }
                 },
-                syntax: { js: [], py: ['mechatro.sensor_value(%1)'] },
+                syntax: { js: [], py: ['ric.sensor_value(%1)'] },
             },
-            /*mechatro_set_threshold: {
-                color: EntryStatic.colorSet.block.default.HARDWARE,
-                outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
-                skeleton: 'basic',
-                statements: [],
-                params: [
-                    {
-                        type: 'Dropdown',
-                        options: [
-                            ['A2', '16'],
-                            ['A3', '17'],
-                            ['A4', '18'],
-                            ['A5', '19'],
-                            ['A6', '20'],
-                            ['A7', '21'],
-                        ],
-                        value: '16',
-                        fontSize: 11,
-                        bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
-                        arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                    },
-                    {
-                        type: 'Block',
-                        accept: 'string',
-                    },
-                    {
-                        type: 'Indicator',
-                        img: 'block_icon/hardware_icon.svg',
-                        size: 12,
-                    },
-                ],
-                events: {},
-                def: {
-                    params: [
-                        null,
-                        {
-                            type: 'number',
-                            params: ['20~1000'],
-                        },
-                        null,
-                    ],
-                    type: 'mechatro_set_threshold',
-                },
-                paramsKeyMap: {
-                    PORT: 0,
-                    VALUE: 1,
-                },
-                class: 'MechatroGet',
-                isNotFor: ['mechatro'],
-                func(sprite, script) {
-                    const portNo = script.getNumberField('PORT', script);
-                    let value = script.getValue('VALUE');
-                    if (!Entry.Utils.isNumber(value)) {
-                        value = 500;
-                    }
-                    value = Math.max(value, 100);
-                    value = Math.min(value, 900);
-                    Entry.mechatro.thresHold[portNo] = value;
-                    return script.callReturn();
-                },
-                syntax: { js: [], py: ['mechatro.set_threshold(%1, %2)'] },
-            },*/
-            mechatro_get_temperature: {
+            ric_get_temperature: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 fontColor: '#fff',
@@ -769,27 +636,27 @@ class mechatro {
                 events: {},
                 def: {
                     params: [null],
-                    type: 'mechatro_get_temperature',
+                    type: 'ric_get_temperature',
                 },
                 paramsKeyMap: {
                     PORT: 0,
                 },
-                class: 'MechatroGet',
-                isNotFor: ['mechatro'],
+                class: 'ricGet',
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     const portNo = script.getNumberField('PORT', script);
                     //const mPortNo = `m${portNo}`;
-                    const mode = Entry.mechatro.portMode.SET_ANALOG_IN;
-                    Entry.mechatro.transferMode(portNo, mode);
+                    const mode = Entry.ric.portMode.SET_ANALOG_IN;
+                    Entry.ric.transferMode(portNo, mode);
                     if (Entry.hw.portData[portNo] !== undefined) {
                         return Math.round((Entry.hw.portData[portNo] * 0.4883 - 50));
                     } else {
                         return 0;
                     }
                 },
-                syntax: { js: [], py: ['mechatro.sensor_temp(%1)'] },
+                syntax: { js: [], py: ['ric.sensor_temp(%1)'] },
             },
-            mechatro_set_get_sensor_value_map: {
+            ric_set_get_sensor_value_map: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 fontColor: '#fff',
@@ -826,7 +693,7 @@ class mechatro {
                 def: {
                     params: [
                         {
-                            type: 'mechatro_get_sensor_value',
+                            type: 'ric_get_sensor_value',
                         },
                         {
                             type: 'number',
@@ -845,7 +712,7 @@ class mechatro {
                             params: ['100'],
                         },
                     ],
-                    type: 'mechatro_set_get_sensor_value_map',
+                    type: 'ric_set_get_sensor_value_map',
                 },
                 paramsKeyMap: {
                     PORT: 0,
@@ -854,8 +721,8 @@ class mechatro {
                     VALUE4: 3,
                     VALUE5: 4,
                 },
-                class: 'MechatroGet',
-                isNotFor: ['mechatro'],
+                class: 'ricGet',
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     let result = script.getValue('PORT', script);
                     let value2 = script.getNumberValue('VALUE2', script);
@@ -891,7 +758,7 @@ class mechatro {
                     js: [],
                     py: [
                         {
-                            syntax: 'mechatro.map(%1, %2, %3, %4, %5)',
+                            syntax: 'ric.map(%1, %2, %3, %4, %5)',
                             blockType: 'param',
                             textParams: [
                                 {
@@ -919,7 +786,7 @@ class mechatro {
                     ],
                 },
             },
-            mechatro_get_ultrasonic_value: {
+            ric_get_ultrasonic_value: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 fontColor: '#fff',
@@ -960,24 +827,24 @@ class mechatro {
                 events: {},
                 def: {
                     params: [null, null],
-                    type: 'mechatro_get_ultrasonic_value',
+                    type: 'ric_get_ultrasonic_value',
                 },
                 paramsKeyMap: {
                     TIRG: 0,
                     ECHO: 1,
                 },
-                class: 'MechatroGet',
-                isNotFor: ['mechatro'],
+                class: 'ricGet',
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     const trig = script.getNumberField('TIRG', script);
                     const echo = script.getNumberField('ECHO', script);
-                    const mode = Entry.mechatro.portMode.SET_ULTRASONIC;
-                    Entry.mechatro.transferModeValue(trig, mode, echo);
+                    const mode = Entry.ric.portMode.SET_ULTRASONIC;
+                    Entry.ric.transferModeValue(trig, mode, echo);
                     // 받는 값 업데이트 포트를 Disable 함. 디지털, 아날로그핀 설정으로 업데이트가 되지 안도록 함.
                     // Echo 포트의 업데이트는 triger 포트에서 업데이트를 시켜줌
-                    Entry.mechatro.transferModeValue(echo, Entry.mechatro.portMode.SET_PORT_DISABLE);
-                    Entry.mechatro.eventState.ENABLE[trig] = false;
-                    Entry.mechatro.eventState.ENABLE[echo] = false;
+                    Entry.ric.transferModeValue(echo, Entry.ric.portMode.SET_PORT_DISABLE);
+                    Entry.ric.eventState.ENABLE[trig] = false;
+                    Entry.ric.eventState.ENABLE[echo] = false;
                     if (Entry.hw.portData.hasOwnProperty(echo)) {
                         return Entry.hw.portData[echo];
                     } else {
@@ -988,7 +855,7 @@ class mechatro {
                     js: [],
                     py: [
                         {
-                            syntax: 'mechatro.ultrasonicRead(%1, %2)',
+                            syntax: 'ric.ultrasonicRead(%1, %2)',
                             blockType: 'param',
                             textParams: [
                                 {
@@ -1004,7 +871,7 @@ class mechatro {
                     ],
                 },
             },
-            mechatro_set_digital: {
+            ric_set_digital: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 skeleton: 'basic',
@@ -1049,31 +916,31 @@ class mechatro {
                 events: {},
                 def: {
                     params: [null, null, null],
-                    type: 'mechatro_set_digital',
+                    type: 'ric_set_digital',
                 },
                 paramsKeyMap: {
                     PORT: 0,
                     OPERATOR: 1,
                 },
-                class: 'Mechatro_d_out',
-                isNotFor: ['mechatro'],
+                class: 'ric_d_out',
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     const portNo = script.getNumberField('PORT', script);
                     let mode;
                     if (portNo < 14) {
-                        mode = Entry.mechatro.portMode.SET_DIGITAL_OUT_L;
+                        mode = Entry.ric.portMode.SET_DIGITAL_OUT_L;
                     }
                     else {
-                        mode = Entry.mechatro.portMode.SET_DIGITAL_OUT_H;
+                        mode = Entry.ric.portMode.SET_DIGITAL_OUT_H;
                     }
                     const value = script.getNumberField('OPERATOR');
 
-                    Entry.mechatro.transferModeValue(portNo, mode, value);
+                    Entry.ric.transferModeValue(portNo, mode, value);
                     return script.callReturn();
                 },
-                syntax: { js: [], py: ['mechatro.set_digital(%1, %2)'] },
+                syntax: { js: [], py: ['ric.set_digital(%1, %2)'] },
             },
-            mechatro_set_pwm: {
+            ric_set_pwm: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 skeleton: 'basic',
@@ -1110,17 +977,17 @@ class mechatro {
                         },
                         null,
                     ],
-                    type: 'mechatro_set_pwm',
+                    type: 'ric_set_pwm',
                 },
                 paramsKeyMap: {
                     PORT: 0,
                     VALUE: 1,
                 },
-                class: 'Mechatro_d_out',
-                isNotFor: ['mechatro'],
+                class: 'ric_d_out',
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     const portNo = script.getNumberField('PORT', script);
-                    const mode = Entry.mechatro.portMode.SET_PWM;
+                    const mode = Entry.ric.portMode.SET_PWM;
                     let value = script.getValue('VALUE');
 
                     if (!Entry.Utils.isNumber(value)) {
@@ -1129,13 +996,13 @@ class mechatro {
                     value = Math.max(value, 0);
                     value = Math.min(value, 100);
 
-                    Entry.mechatro.transferModeValue(portNo, mode, value);
-                    Entry.mechatro.eventState.ENABLE[portNo] = false;
+                    Entry.ric.transferModeValue(portNo, mode, value);
+                    Entry.ric.eventState.ENABLE[portNo] = false;
                     return script.callReturn();
                 },
-                syntax: { js: [], py: ['mechatro.set_pwm(%1, %2)'] },
+                syntax: { js: [], py: ['ric.set_pwm(%1, %2)'] },
             },
-            mechatro_set_tone_time: {
+            ric_set_tone_time: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 skeleton: 'basic',
@@ -1215,7 +1082,7 @@ class mechatro {
                         },
                         null,
                     ],
-                    type: 'mechatro_set_tone_time',
+                    type: 'ric_set_tone_time',
                 },
                 paramsKeyMap: {
                     PORT: 0,
@@ -1223,11 +1090,11 @@ class mechatro {
                     OCTAVE: 2,
                     DURATION: 3,
                 },
-                class: 'Mechatro_d_out',
-                isNotFor: ['mechatro'],
+                class: 'ric_d_out',
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     const portNo = script.getNumberField('PORT', script);
-                    Entry.mechatro.tonePin = portNo;
+                    Entry.ric.tonePin = portNo;
                     let mode;
                     if (!script.isStart) {
                         script.isStart = true;
@@ -1244,16 +1111,16 @@ class mechatro {
                         }
 
                         if (duration === 50 || note === 0) {   // 음 후반 50ms 무음 처리, 동일음 연속사용시 음간 구분
-                            mode = Entry.mechatro.portMode.SET_NO_TONE;
-                            Entry.mechatro.transferMode(portNo, mode);
-                            Entry.mechatro.eventState.ENABLE[portNo] = true;
-                            Entry.mechatro.tonePin = 0;
+                            mode = Entry.ric.portMode.SET_NO_TONE;
+                            Entry.ric.transferMode(portNo, mode);
+                            Entry.ric.eventState.ENABLE[portNo] = true;
+                            Entry.ric.tonePin = 0;
                         } else {
-                            mode = Entry.mechatro.portMode.SET_TONE;
-                            Entry.mechatro.transferModeValue(3, Entry.mechatro.portMode.SET_MOTOR_SPEED_Free, 100);    // 모터 사용 중지
-                            Entry.mechatro.transferModeValue(11, Entry.mechatro.portMode.SET_MOTOR_SPEED_Free, 100);   // 모터 사용 중지
-                            Entry.mechatro.transferModeValue(portNo, mode, value);
-                            Entry.mechatro.eventState.ENABLE[portNo] = false;
+                            mode = Entry.ric.portMode.SET_TONE;
+                            Entry.ric.transferModeValue(3, Entry.ric.portMode.SET_MOTOR_SPEED_Free, 100);    // 모터 사용 중지
+                            Entry.ric.transferModeValue(11, Entry.ric.portMode.SET_MOTOR_SPEED_Free, 100);   // 모터 사용 중지
+                            Entry.ric.transferModeValue(portNo, mode, value);
+                            Entry.ric.eventState.ENABLE[portNo] = false;
                         }
 
                         setTimeout(() => {
@@ -1268,10 +1135,10 @@ class mechatro {
                     } else if (script.timeFlag == 1) {
                         return script;
                     } else if (script.timeFlag == 2) {
-                        mode = Entry.mechatro.portMode.SET_NO_TONE;
-                        Entry.mechatro.transferMode(portNo, mode);
-                        Entry.mechatro.eventState.ENABLE[portNo] = true;
-                        Entry.mechatro.tonePin = 0;
+                        mode = Entry.ric.portMode.SET_NO_TONE;
+                        Entry.ric.transferMode(portNo, mode);
+                        Entry.ric.eventState.ENABLE[portNo] = true;
+                        Entry.ric.tonePin = 0;
                         return script;
                     } else {
                         delete script.timeFlag;
@@ -1284,7 +1151,7 @@ class mechatro {
                     js: [],
                     py: [
                         {
-                            syntax: 'mechatro.tone_time(%1, %2, %3, %4)',
+                            syntax: 'ric.tone_time(%1, %2, %3, %4)',
                             textParams: [
                                 {
                                     type: 'Block',
@@ -1307,7 +1174,7 @@ class mechatro {
                     ],
                 },
             },
-            mechatro_set_tone: {
+            ric_set_tone: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 skeleton: 'basic',
@@ -1374,34 +1241,34 @@ class mechatro {
                 events: {},
                 def: {
                     params: [null, null, null, null],
-                    type: 'mechatro_set_tone',
+                    type: 'ric_set_tone',
                 },
                 paramsKeyMap: {
                     PORT: 0,
                     NOTE: 1,
                     OCTAVE: 2,
                 },
-                class: 'Mechatro_d_out',
-                isNotFor: ['mechatro'],
+                class: 'ric_d_out',
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     let portNo = script.getNumberField('PORT', script);
-                    Entry.mechatro.tonePin = portNo;
+                    Entry.ric.tonePin = portNo;
                     let note = script.getNumberField('NOTE', script);
                     let octave = script.getNumberField('OCTAVE', script);
                     let mode;
                     let value = (octave << 4) | (note - 1);
 
                     if (note === 0) {
-                        mode = Entry.mechatro.portMode.SET_NO_TONE;
-                        Entry.mechatro.transferMode(portNo, mode);
-                        Entry.mechatro.eventState.ENABLE[portNo] = true;
-                        Entry.mechatro.tonePin = 0;
+                        mode = Entry.ric.portMode.SET_NO_TONE;
+                        Entry.ric.transferMode(portNo, mode);
+                        Entry.ric.eventState.ENABLE[portNo] = true;
+                        Entry.ric.tonePin = 0;
                     } else {
-                        mode = Entry.mechatro.portMode.SET_TONE;
-                        Entry.mechatro.transferModeValue(3, Entry.mechatro.portMode.SET_MOTOR_SPEED_Free, 100);
-                        Entry.mechatro.transferModeValue(11, Entry.mechatro.portMode.SET_MOTOR_SPEED_Free, 100);
-                        Entry.mechatro.transferModeValue(portNo, mode, value);
-                        Entry.mechatro.eventState.ENABLE[portNo] = false;
+                        mode = Entry.ric.portMode.SET_TONE;
+                        Entry.ric.transferModeValue(3, Entry.ric.portMode.SET_MOTOR_SPEED_Free, 100);
+                        Entry.ric.transferModeValue(11, Entry.ric.portMode.SET_MOTOR_SPEED_Free, 100);
+                        Entry.ric.transferModeValue(portNo, mode, value);
+                        Entry.ric.eventState.ENABLE[portNo] = false;
                     }
                     return script.callReturn();
                 },
@@ -1409,7 +1276,7 @@ class mechatro {
                     js: [],
                     py: [
                         {
-                            syntax: 'mechatro.tone(%1, %2, %3)',
+                            syntax: 'ric.tone(%1, %2, %3)',
                             textParams: [
                                 {
                                     type: 'Block',
@@ -1428,7 +1295,7 @@ class mechatro {
                     ],
                 },
             },
-            mechatro_set_dc_motor: {
+            ric_set_dc_motor: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 skeleton: 'basic',
@@ -1465,14 +1332,14 @@ class mechatro {
                         },
                         null,
                     ],
-                    type: 'mechatro_set_dc_motor',
+                    type: 'ric_set_dc_motor',
                 },
                 paramsKeyMap: {
                     PORT: 0,
                     SPEED: 1,
                 },
                 class: 'set_motor',
-                isNotFor: ['mechatro'],
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     const portNo = script.getField('PORT', script);
                     let value = script.getValue('SPEED');
@@ -1481,21 +1348,21 @@ class mechatro {
                         value = 0;
                     }
 
-                    const mode = Entry.mechatro.portMode.SET_MOTOR_SPEED_Free;
+                    const mode = Entry.ric.portMode.SET_MOTOR_SPEED_Free;
                     value = Math.round(value);
                     value = value + 100;
                     value = Math.max(value, 0);
                     value = Math.min(value, 200);
 
-                    if (Entry.mechatro.tonePin) {   // 22.6.5 톤 중복 사용 금지처리
-                        Entry.mechatro.transferMode(Entry.mechatro.tonePin, Entry.mechatro.portMode.SET_NO_TONE);
-                        Entry.mechatro.tonePin = 0;
+                    if (Entry.ric.tonePin) {   // 22.6.5 톤 중복 사용 금지처리
+                        Entry.ric.transferMode(Entry.ric.tonePin, Entry.ric.portMode.SET_NO_TONE);
+                        Entry.ric.tonePin = 0;
                     }
-                    Entry.mechatro.transferModeValue(portNo, mode, value);
+                    Entry.ric.transferModeValue(portNo, mode, value);
                     return script.callReturn();
                 },
             },
-            mechatro_get_dc_motor_current: {
+            ric_get_dc_motor_current: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 fontColor: '#fff',
@@ -1517,18 +1384,18 @@ class mechatro {
                 events: {},
                 def: {
                     params: [null],
-                    type: 'mechatro_get_dc_motor_current',
+                    type: 'ric_get_dc_motor_current',
                 },
                 paramsKeyMap: {
                     PORT: 0,
                 },
-                class: 'MechatroGet',
-                isNotFor: ['mechatro'],
+                class: 'ricGet',
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     const portNo = script.getNumberField('PORT', script);
-                    const mode = Entry.mechatro.portMode.SET_MOTOR_CURRENT;
+                    const mode = Entry.ric.portMode.SET_MOTOR_CURRENT;
 
-                    Entry.mechatro.transferMode(portNo, mode);
+                    Entry.ric.transferMode(portNo, mode);
 
                     if (Entry.hw.portData[portNo] !== undefined) {
                         return Entry.hw.portData[portNo] * 10.0; // [cA] → [mA]
@@ -1538,10 +1405,10 @@ class mechatro {
                 },
                 syntax: {
                     js: [],
-                    py: ['mechatro.get_dc_motor_current(%1)'],
+                    py: ['ric.get_dc_motor_current(%1)'],
                 },
             },
-            mechatro_set_servo_position: {
+            ric_set_servo_position: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 skeleton: 'basic',
@@ -1580,17 +1447,17 @@ class mechatro {
                         },
                         null,
                     ],
-                    type: 'mechatro_set_servo_position',
+                    type: 'ric_set_servo_position',
                 },
                 paramsKeyMap: {
                     PORT: 0,
                     DEGREE: 1,
                 },
                 class: 'set_motor',
-                isNotFor: ['mechatro'],
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     const portNo = script.getNumberField('PORT', script);
-                    const mode = Entry.mechatro.portMode.SET_SERVO_POSITION;
+                    const mode = Entry.ric.portMode.SET_SERVO_POSITION;
                     let value = script.getValue('DEGREE');
 
                     if (!Entry.Utils.isNumber(value)) {
@@ -1599,16 +1466,163 @@ class mechatro {
                     value = Math.max(value, 0);
                     value = Math.min(value, 180);
 
-                    Entry.mechatro.transferModeValue(portNo, mode, value);
+                    Entry.ric.transferModeValue(portNo, mode, value);
 
                     return script.callReturn();
                 },
                 syntax: {
                     js: [],
-                    py: ['mechatro.set_servo_position(%1, %2)'],
+                    py: ['ric.set_servo_position(%1, %2)'],
                 },
             },
-            mechatro_set_servo_speed: {
+            ric_set_servo_positions: {
+                color: EntryStatic.colorSet.block.default.HARDWARE,
+                outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
+                skeleton: 'basic',
+                statements: [],
+                params: [
+                    {
+                        type: 'Block',
+                        accept: 'string',
+                    },
+                    {
+                        type: 'Block',
+                        accept: 'string',
+                    },
+                    {
+                        type: 'Block',
+                        accept: 'string',
+                    },
+                    {
+                        type: 'Block',
+                        accept: 'string',
+                    },
+                    {
+                        type: 'Block',
+                        accept: 'string',
+                    },
+                    {
+                        type: 'Block',
+                        accept: 'string',
+                    },
+                    {
+                        type: 'Block',
+                        accept: 'string',
+                    },
+                    {
+                        type: 'Block',
+                        accept: 'string',
+                    },
+                    {
+                        type: 'Block',
+                        accept: 'string',
+                    },
+                    {
+                        type: 'Indicator',
+                        img: 'block_icon/hardware_icon.svg',
+                        size: 12,
+                    },
+                ],
+                events: {},
+                def: {
+                    params: [
+                        {
+                            type: 'number',
+                            params: ['0~180'],
+                        },
+                        {
+                            type: 'number',
+                            params: ['0~180'],
+                        },
+                        {
+                            type: 'number',
+                            params: ['0~180'],
+                        },
+                        {
+                            type: 'number',
+                            params: ['0~180'],
+                        },
+                        {
+                            type: 'number',
+                            params: ['0~180'],
+                        },
+                        {
+                            type: 'number',
+                            params: ['0~180'],
+                        },
+                        {
+                            type: 'number',
+                            params: ['0~180'],
+                        },
+                        {
+                            type: 'number',
+                            params: ['0~180'],
+                        },
+                        {
+                            type: 'number',
+                            params: ['0.0~12.0'],
+                        },
+                        null,
+                    ],
+                    type: 'ric_set_servo_positions',
+                },
+                paramsKeyMap: {
+                    P0: 0,
+                    P1: 1,
+                    P2: 2,
+                    P3: 3,
+                    P4: 4,
+                    P5: 5,
+                    P6: 6,
+                    P7: 7,
+                    runTime: 8,
+                },
+                class: 'set_motor',
+                isNotFor: ['ric'],
+                func: function (sprite, script) {
+                    const mode = Entry.ric.portMode.SET_SERVO_RUNTIME;
+                    let tValue = script.getValue('runTime');
+                    let servoP = {
+                        '0': script.getValue('P0'),
+                        '1': script.getValue('P1'),
+                        '2': script.getValue('P2'),
+                        '3': script.getValue('P3'),
+                        '4': script.getValue('P4'),
+                        '5': script.getValue('P5'),
+                        '6': script.getValue('P6'),
+                        '7': script.getValue('P7'),
+                    };
+
+                    Object.keys(servoP).forEach((key) => {
+                        if (!Entry.Utils.isNumber(servoP[key])) {
+                            servoP[key] = 90;
+                        };
+                        servoP[key] = Math.max(servoP[key], 0);
+                        servoP[key] = Math.min(servoP[key], 180);
+                    });
+                    if (!Entry.Utils.isNumber(tValue)) {
+                        tValue = 20;
+                    };
+                    tValue = Math.max(tValue, 5);
+                    tValue = Math.min(tValue, 128);
+
+                    if (Entry.hw.sendQueue.SEND_DATA == undefined) {
+                        Entry.hw.sendQueue = {
+                            SEND_DATA: {},
+                        };
+                    }
+                    Entry.hw.sendQueue.SEND_DATA["allServoRrun"] = {
+                        VALUE: servoP,
+                        RUNTIME: tValue,
+                    };
+                    return script.callReturn();
+                },
+                syntax: {
+                    js: [],
+                    py: ['ric.set_servo_position(%1, %2)'],
+                },
+            },
+            ric_set_servo_speed: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 skeleton: 'basic',
@@ -1647,17 +1661,17 @@ class mechatro {
                         },
                         null,
                     ],
-                    type: 'mechatro_set_servo_speed',
+                    type: 'ric_set_servo_speed',
                 },
                 paramsKeyMap: {
                     PORT: 0,
                     SPEED: 1,
                 },
                 class: 'set_motor',
-                isNotFor: ['mechatro'],
+                isNotFor: ['ric'],
                 func(sprite, script) {
                     const portNo = script.getNumberField('PORT', script);
-                    const mode = Entry.mechatro.portMode.SET_SERVO_SPEED;
+                    const mode = Entry.ric.portMode.SET_SERVO_SPEED;
                     let value = script.getValue('SPEED');
 
                     if (!Entry.Utils.isNumber(value)) {
@@ -1666,16 +1680,16 @@ class mechatro {
                     value = Math.max(value, 0);
                     value = Math.min(value, 255);
 
-                    Entry.mechatro.transferModeValue(portNo, mode, value);
+                    Entry.ric.transferModeValue(portNo, mode, value);
 
                     return script.callReturn();
                 },
                 syntax: {
                     js: [],
-                    py: ['mechatro.set_servo_speed(%1, %2)'],
+                    py: ['ric.set_servo_speed(%1, %2)'],
                 },
             },
-            mechatro_set_blue_pw: {
+            ric_set_blue_pw: {
                 color: EntryStatic.colorSet.block.default.HARDWARE,
                 outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
                 skeleton: 'basic',
@@ -1728,7 +1742,7 @@ class mechatro {
                             size: 12,
                         },
                     ],
-                    type: 'mechatro_set_blue_pw',
+                    type: 'ric_set_blue_pw',
                 },
                 paramsKeyMap: {
                     PW1: 0,
@@ -1736,10 +1750,10 @@ class mechatro {
                     PW3: 2,
                     PW4: 3,
                 },
-                class: 'Mechatro_blue',
-                isNotFor: ['mechatro'],
+                class: 'ric_blue',
+                isNotFor: ['ric'],
                 func(sprite, script) {
-                    const mode = Entry.mechatro.portMode.SET_BLUE_PW;
+                    const mode = Entry.ric.portMode.SET_BLUE_PW;
 
                     const value =
                         script.getNumberValue('PW1') * 1000 +
@@ -1747,15 +1761,15 @@ class mechatro {
                         script.getNumberValue('PW3') * 10 +
                         script.getNumberValue('PW4');
 
-                    Entry.mechatro.transferModeValue(2, mode, value);
+                    Entry.ric.transferModeValue(2, mode, value);
 
                     return script.callReturn();
                 },
-                syntax: { js: [], py: ['mechatro.set_pwm(%1, %2)'] },
+                syntax: { js: [], py: ['ric.set_pwm(%1, %2)'] },
             },
         };
     }
 }
 
-Entry.mechatro = new mechatro();
-module.exports = Entry.mechatro;
+Entry.ric = new ric();
+module.exports = Entry.ric;
