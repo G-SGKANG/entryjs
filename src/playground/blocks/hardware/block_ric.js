@@ -1605,13 +1605,14 @@ class ric {
                     };
                     tValue = Math.max(tValue, 5);
                     tValue = Math.min(tValue, 128);
-
+                    
                     if (Entry.hw.sendQueue.SEND_DATA == undefined) {
                         Entry.hw.sendQueue = {
                             SEND_DATA: {},
                         };
                     }
-                    Entry.hw.sendQueue.SEND_DATA["allServoRrun"] = {
+                    Entry.hw.sendQueue.SEND_DATA["allServoPort"] = {
+                        MODE: mode,
                         VALUE: servoP,
                         RUNTIME: tValue,
                     };
