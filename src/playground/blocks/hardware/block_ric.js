@@ -10,7 +10,7 @@
 
 class ric {
     constructor() {
-        this.id = '1F.1';
+        this.id = 'AA.1';
         this.url = 'http://www.arduino.cc/';
         this.name = 'ric';
         this.imageName = 'arduinoExt.png';
