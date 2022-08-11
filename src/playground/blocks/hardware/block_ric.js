@@ -104,34 +104,35 @@ class ric {
         };
 
         this.portMode = {
-
-            SET_GROUP_COMMAND: 0x80,
+            SET_GROUP_1: 0x80,
             SET_INIT_DEVICE: 0x80,
-            SET_PORT_DISABLE: 0x81,
-            SET_BLUE_PW: 0x82,
-            SET_NO_TONE: 0x83,
-            SET_MOTOR_CURRENT: 0x84,
-            SET_SERVO_RUNTIME: 0x86,
+            SET_DIGITAL_OUT: 0x81,
+            SET_NO_TONE: 0x82,
+            SET_PORT_DISABLE: 0x86,
+            SET_BLUE_PW: 0x87,
 
-            SET_MOTOR_SPEED_Free: 0x88,
-            SET_MOTOR_SPEED_Fast: 0x8C,
+            SET_ALL_SERVO_RUNTIME: 0x88,
+            SET_MOTOR_CURRENT: 0x8A,
+            SET_MOTOR_CURRENT_A: 0x8A,
+            SET_MOTOR_CURRENT_B: 0X8B,
 
-            SET_SERVO_SPEED: 0x90,
+            SET_MOTOR_SPEED_Free: 0x90,
+            SET_MOTOR_SPEED_Fast: 0x94,
 
-            SET_GROUP_D_OUT: 0xa0,
-            SET_DIGITAL_OUT_L: 0xa0,
-            SET_DIGITAL_OUT_H: 0xb0,
+            SET_TONE: 0x98,
+            SET_PWM: 0x9C,
 
-            SET_GROUP_SERVO_PWM_TON: 0xc0,
-            SET_SERVO_POSITION: 0xc0,
-            SET_PWM: 0xd0,
-            SET_TONE: 0xd8,
+            SET_GROUP_2: 0xA0,
+            SET_SERVO_POSITION: 0xA0,
 
-            SET_GROUP_INPUT: 0xe0,
-            SET_ANALOG_IN: 0xe0,
-            SET_DIGITAL_IN_L: 0xe8,
-            SET_DIGITAL_IN_H: 0xf0,
-            SET_ULTRASONIC: 0xf8,
+            SET_GROUP_3: 0xC0,
+            SET_SERVO_SPEED: 0xC0,
+            SET_SERVO_RUNTIME: 0xD0,
+
+            SET_GROUP_INPUT: 0xE0,
+            SET_ANALOG_IN: 0xE0,
+            SET_ULTRASONIC: 0xE8,
+            SET_DIGITAL_IN: 0xF0,
         };
 
         this.prev_sensor_data = { '2': 0, '4': 0, '5': 0, '6': 0, '7': 0, '10': 0 };
@@ -198,7 +199,7 @@ class ric {
                     ric_set_digital: "%1번 %2 %3",
                     ric_set_pwm: "%1PWM을 %2%로 정하기 %3",
                     ric_set_servo_position: "%1서보모터 위치 :%2도로 옮기기 %3",
-                    ric_set_servo_positions: "서보각도 %1 %2 %3 %4 %5 %6 %7 %8 시간: %9",
+                    ric_set_servo_positions: "서보각도 %1 %2 %3 %4 %5 %6 %7 시간: %8",
                     ric_set_servo_speed: "%1서보모터 속도 : 1초당 %2도로 정하기 %3",
                     //ric_set_threshold: "%1 센서 감도 : %2로 정하기%3",
                     //ric_set_tone: "%1버저 %2 %3 음으로 연주 %4",
@@ -221,7 +222,7 @@ class ric {
                     ric_set_digital: "Digital %1 Pin %2 %3",
                     ric_set_pwm: "Digital %1 Pin %2 %3",
                     ric_set_servo_position: "Set servo pin %1 angle as %2 %3",
-                    ric_set_servo_positions: "%Servo 1 %2 %3 %4 %5 %6 %7 %8 Time: %9",
+                    ric_set_servo_positions: "%Servo 1 %2 %3 %4 %5 %6 %7 time %8",
                     ric_set_servo_speed: "Set servo pin %1 speed %2 degree per second %3",
                     //ric_set_threshold: "Set %1 threshold : %2%3",
                     //ric_set_tone: "Play tone pin %1 on note %2 octave %3 %4",
@@ -444,11 +445,8 @@ class ric {
                     var portNo = script.getNumberField('PORT', script);
                     var mode;
                     var value;
-                    if (portNo > 14) {
-                        mode = Entry.ric.portMode.SET_DIGITAL_IN_H;
-                    } else {
-                        mode = Entry.ric.portMode.SET_DIGITAL_IN_L;
-                    }
+                    mode = Entry.ric.portMode.SET_DIGITAL_IN;
+
                     Entry.ric.transferMode(portNo, mode);
 
                     if (Entry.hw.portData[portNo] !== undefined) {
@@ -927,12 +925,7 @@ class ric {
                 func(sprite, script) {
                     const portNo = script.getNumberField('PORT', script);
                     let mode;
-                    if (portNo < 14) {
-                        mode = Entry.ric.portMode.SET_DIGITAL_OUT_L;
-                    }
-                    else {
-                        mode = Entry.ric.portMode.SET_DIGITAL_OUT_H;
-                    }
+                    mode = Entry.ric.portMode.SET_DIGITAL_OUT;
                     const value = script.getNumberField('OPERATOR');
 
                     Entry.ric.transferModeValue(portNo, mode, value);
@@ -1418,9 +1411,12 @@ class ric {
                         type: 'Dropdown',
                         options: [
                             ['D2', '2'],
+                            ['D4', '5'],
                             ['D5', '5'],
                             ['D6', '6'],
+                            ['D7', '7'],
                             ['D10', '10'],
+                            ['A2', '16'],
                         ],
                         value: '2',
                         fontSize: 11,
@@ -1514,10 +1510,6 @@ class ric {
                         accept: 'string',
                     },
                     {
-                        type: 'Block',
-                        accept: 'string',
-                    },
-                    {
                         type: 'Indicator',
                         img: 'block_icon/hardware_icon.svg',
                         size: 12,
@@ -1526,10 +1518,6 @@ class ric {
                 events: {},
                 def: {
                     params: [
-                        {
-                            type: 'number',
-                            params: ['0~180'],
-                        },
                         {
                             type: 'number',
                             params: ['0~180'],
@@ -1574,53 +1562,68 @@ class ric {
                     P4: 4,
                     P5: 5,
                     P6: 6,
-                    P7: 7,
-                    runTime: 8,
+                    RUNTIME: 7,
                 },
                 class: 'set_motor',
                 isNotFor: ['ric'],
-                func: function (sprite, script) {
-                    const mode = Entry.ric.portMode.SET_SERVO_RUNTIME;
-                    let tValue = script.getValue('runTime');
-                    let servoP = {
-                        '0': script.getValue('P0'),
-                        '1': script.getValue('P1'),
-                        '2': script.getValue('P2'),
-                        '3': script.getValue('P3'),
-                        '4': script.getValue('P4'),
-                        '5': script.getValue('P5'),
-                        '6': script.getValue('P6'),
-                        '7': script.getValue('P7'),
-                    };
+                func(sprite, script) {
+                    if (!script.isStart) {
+                        script.isStart = true;
+                        script.timeFlag = 1;
 
-                    Object.keys(servoP).forEach((key) => {
-                        if (!Entry.Utils.isNumber(servoP[key])) {
-                            servoP[key] = 90;
+                        const mode = Entry.ric.portMode.SET_ALL_SERVO_RUNTIME;
+                        let runTime = script.getValue('RUNTIME');
+                        let servoP = [
+                            script.getValue('P0'),
+                            script.getValue('P1'),
+                            script.getValue('P2'),
+                            script.getValue('P3'),
+                            script.getValue('P4'),
+                            script.getValue('P5'),
+                            script.getValue('P6')
+                        ];
+                        Object.keys(servoP).forEach((key) => {    // 입력값 검사
+                            if (!Entry.Utils.isNumber(servoP[key])) {
+                                servoP[key] = 90;
+                            };
+                            servoP[key] = Math.max(servoP[key], 0);
+                            servoP[key] = Math.min(servoP[key], 180);
+                        });
+
+                        if (!Entry.Utils.isNumber(runTime)) {   // 입력값 검사
+                            runTime = 30;  //3초
+                        } else {
+                            runTime *= 10;
                         };
-                        servoP[key] = Math.max(servoP[key], 0);
-                        servoP[key] = Math.min(servoP[key], 180);
-                    });
-                    if (!Entry.Utils.isNumber(tValue)) {
-                        tValue = 20;
-                    };
-                    tValue = Math.max(tValue, 5);
-                    tValue = Math.min(tValue, 128);
-                    
-                    if (Entry.hw.sendQueue.SEND_DATA == undefined) {
-                        Entry.hw.sendQueue = {
-                            SEND_DATA: {},
+                        runTime = Math.max(runTime, 5);
+                        runTime = Math.min(runTime, 128);
+
+                        if (Entry.hw.sendQueue.SEND_DATA == undefined) {
+                            Entry.hw.sendQueue = {
+                                SEND_DATA: {},
+                            };
+                        }
+                        Entry.hw.sendQueue.SEND_DATA["allServoPort"] = {
+                            MODE: mode,
+                            POSITION: servoP,
+                            VALUE: runTime,
                         };
+                        setTimeout(() => {
+                            script.timeFlag = 0;
+                        }, runTime * 100);
+                        return script;
+                    } else if (script.timeFlag == 1) {
+                        return script;
+                    } else {
+                        delete script.timeFlag;
+                        delete script.isStart;
+                        Entry.engine.isContinue = false;
+                        return script.callReturn();
                     }
-                    Entry.hw.sendQueue.SEND_DATA["allServoPort"] = {
-                        MODE: mode,
-                        VALUE: servoP,
-                        RUNTIME: tValue,
-                    };
-                    return script.callReturn();
                 },
                 syntax: {
                     js: [],
-                    py: ['ric.set_servo_position(%1, %2)'],
+                    py: ['ric.set_servo_positions(%1, %2, %3, %4, %5, %6, %7, %8)'],
                 },
             },
             ric_set_servo_speed: {
@@ -1633,9 +1636,12 @@ class ric {
                         type: 'Dropdown',
                         options: [
                             ['D2', '22'],
-                            ['D5', '23'],
-                            ['D6', '24'],
-                            ['D10', '25'],
+                            ['D4', '23'],
+                            ['D5', '24'],
+                            ['D6', '25'],
+                            ['D7', '26'],
+                            ['D10', '27'],
+                            ['A2', '28'],
                         ],
                         value: '22',
                         fontSize: 11,
