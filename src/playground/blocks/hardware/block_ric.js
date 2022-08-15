@@ -198,7 +198,7 @@ class ric {
                     ric_set_dc_motor: "%1모터 속도 %2로 정하기%3",
                     ric_set_digital: "%1번 %2 %3",
                     ric_set_pwm: "%1PWM을 %2%로 정하기 %3",
-                    ric_set_servo_position: "%1서보모터 위치 :%2도로 옮기기 %3",
+                    ric_set_servo_position: "%1서보 위치:%2˚  속도:%3[˚/1s] %4",
                     ric_set_servo_positions: "서보각도 %1 %2 %3 %4 %5 %6 %7 시간: %8",
                     ric_set_servo_speed: "%1서보모터 속도 : 1초당 %2도로 정하기 %3",
                     ric_set_threshold: "%1 센서 감도 : %2로 정하기%3",
@@ -221,7 +221,7 @@ class ric {
                     ric_set_dc_motor: "Set %1 motor speed to %2 %3",
                     ric_set_digital: "Digital %1 Pin %2 %3",
                     ric_set_pwm: "Digital %1 Pin %2 %3",
-                    ric_set_servo_position: "Set servo pin %1 angle as %2 %3",
+                    ric_set_servo_position: "Set servo pin %1 angle %2, speed %3[˚/1s] %4",
                     ric_set_servo_positions: "%Servo 1 %2 %3 %4 %5 %6 %7 time %8",
                     ric_set_servo_speed: "Set servo pin %1 speed %2 degree per second %3",
                     ric_set_threshold: "Set %1 threshold : %2%3",
@@ -1424,6 +1424,10 @@ class ric {
                         accept: 'string',
                     },
                     {
+                        type: 'Block',
+                        accept: 'string',
+                    },
+                    {
                         type: 'Indicator',
                         img: 'block_icon/hardware_icon.svg',
                         size: 12,
@@ -1437,6 +1441,10 @@ class ric {
                             type: 'number',
                             params: ['0~180'],
                         },
+                        {
+                            type: 'number',
+                            params: ['1~255'],
+                        },
                         null,
                     ],
                     type: 'ric_set_servo_position',
@@ -1444,21 +1452,38 @@ class ric {
                 paramsKeyMap: {
                     PORT: 0,
                     DEGREE: 1,
+                    SPEED: 2,
                 },
                 class: 'set_motor',
                 isNotFor: ['ric'],
                 func(sprite, script) {
                     const portNo = script.getNumberField('PORT', script);
-                    const mode = Entry.ric.portMode.SET_SERVO_POSITION;
-                    let value = script.getValue('DEGREE');
+                    const mode = Entry.ric.portMode.SET_SERVO_SPEED;
 
-                    if (!Entry.Utils.isNumber(value)) {
-                        value = 90;
+                    let degree = script.getValue('DEGREE');
+                    if (!Entry.Utils.isNumber(degree)) {
+                        degree = 90;
+                    };
+                    degree = Math.max(degree, 0);
+                    degree = Math.min(degree, 180);
+
+                    let speed = script.getValue('SPEED');
+                    if (!Entry.Utils.isNumber(speed)) {   // 입력값 검사
+                        speed = 60;  //초당 60도
+                    };
+                    speed = Math.max(speed, 1);
+                    speed = Math.min(speed, 255);
+
+                    if (Entry.hw.sendQueue.SEND_DATA == undefined) {
+                        Entry.hw.sendQueue = {
+                            SEND_DATA: {},
+                        };
                     }
-                    value = Math.max(value, 0);
-                    value = Math.min(value, 180);
-
-                    Entry.ric.transferModeValue(portNo, mode, value);
+                    Entry.hw.sendQueue.SEND_DATA[portNo] = {
+                        MODE: mode,
+                        POSITION: degree,
+                        VALUE: speed,
+                    };
 
                     return script.callReturn();
                 },
@@ -1569,15 +1594,15 @@ class ric {
 
                         const mode = Entry.ric.portMode.SET_ALL_SERVO_RUNTIME;
                         let runTime = script.getValue('RUNTIME');
-                        let servoP = [
-                            script.getValue('P0'),
-                            script.getValue('P1'),
-                            script.getValue('P2'),
-                            script.getValue('P3'),
-                            script.getValue('P4'),
-                            script.getValue('P5'),
-                            script.getValue('P6')
-                        ];
+                        let servoP = {
+                            '0': script.getValue('P0'),
+                            '1': script.getValue('P1'),
+                            '2': script.getValue('P2'),
+                            '3': script.getValue('P3'),
+                            '4': script.getValue('P4'),
+                            '5': script.getValue('P5'),
+                            '6': script.getValue('P6')
+                        };
                         Object.keys(servoP).forEach((key) => {    // 입력값 검사
                             if (!Entry.Utils.isNumber(servoP[key])) {
                                 servoP[key] = 90;
