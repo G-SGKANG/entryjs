@@ -166,7 +166,7 @@ class ric {
             'ric_get_digital',
             'ric_get_analog_judgement',  // Add 2022-05-22
             'ric_get_sensor_value',
-            //'ric_get_dc_motor_current',
+            'ric_get_dc_motor_current',
             //'ric_get_ultrasonic_value',
             //'ric_get_temperature',
             'ric_set_get_sensor_value_map',
@@ -174,7 +174,7 @@ class ric {
             'ric_set_pwm',
             //'ric_set_tone',
             //'ric_set_tone_time',
-            //'ric_set_dc_motor',
+            'ric_set_dc_motor',
             'ric_set_servo_position',
             'ric_set_servo_positions',
             //'ric_set_servo_speed',
